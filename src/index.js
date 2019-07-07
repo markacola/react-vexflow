@@ -14,9 +14,16 @@ export function Score({
   height = 150,
 }) {
   const container = useRef()
+  const rendererRef = useRef()
 
   useEffect(() => {
-    const renderer = new Renderer(container.current, Renderer.Backends.SVG)
+    if (rendererRef.current == null) {
+      rendererRef.current = new Renderer(
+        container.current,
+        Renderer.Backends.SVG
+      )
+    }
+    const renderer = rendererRef.current
     renderer.resize(width, height)
     const context = renderer.getContext()
     context.setFont('Arial', 10, '').setBackgroundFillStyle('#eed')
