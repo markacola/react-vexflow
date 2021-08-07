@@ -4,7 +4,8 @@ import VexFlow from 'vexflow'
 const VF = VexFlow.Flow
 const { Formatter, Renderer, Stave, StaveNote } = VF
 
-const clefAndTimeWidth = 60
+const clefWidth = 30;
+const timeWidth = 30;
 
 export function Score({
   staves = [],
@@ -27,6 +28,7 @@ export function Score({
     renderer.resize(width, height)
     const context = renderer.getContext()
     context.setFont('Arial', 10, '').setBackgroundFillStyle('#eed')
+    const clefAndTimeWidth = (clef ? clefWidth : 0) + (timeSignature ? timeWidth : 0);
     const staveWidth = (width - clefAndTimeWidth) / staves.length
 
     let currX = 0
@@ -34,7 +36,8 @@ export function Score({
       const stave = new Stave(currX, 0, staveWidth)
       if (i === 0) {
         stave.setWidth(staveWidth + clefAndTimeWidth)
-        stave.addClef(clef).addTimeSignature(timeSignature)
+        clef && stave.addClef(clef);
+        timeSignature && stave.addTimeSignature(timeSignature);
       }
       currX += stave.getWidth()
       stave.setContext(context).draw()
