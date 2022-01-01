@@ -18,12 +18,12 @@ export function Score({
   const rendererRef = useRef()
 
   useEffect(() => {
-    if (rendererRef.current == null) {
+
       rendererRef.current = new Renderer(
         container.current,
         Renderer.Backends.SVG
       )
-    }
+    
     const renderer = rendererRef.current
     renderer.resize(width, height)
     const context = renderer.getContext()
@@ -66,6 +66,14 @@ export function Score({
         auto_beam: true,
       })
     })
+
+    return function cleanup() {
+      if (container.current) {
+          container.current.innerHTML = "";
+      }
+    };
+
+
   }, [staves])
 
   return <div ref={container} />
