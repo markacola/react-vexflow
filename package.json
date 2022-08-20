@@ -1,6 +1,6 @@
 {
   "name": "react-vexflow",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "React components for VexFlow",
   "author": "markacola",
   "license": "MIT",
@@ -23,8 +23,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
-    "react": "^15.0.0 || ^16.0.0|| ^17.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
